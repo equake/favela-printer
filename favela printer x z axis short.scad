@@ -1,4 +1,4 @@
-//mirror([1,0,0]) {
+mirror([1,0,0]) {
     difference() {
         cube([19, 39.5, 61.5]);
         translate([0, 2, 0]) {
@@ -14,7 +14,17 @@
 
     translate([0,-17,0]) rotate([90,0,90]) {
         difference() {
-            cube([19, 39.5, 60]);
+            union() {
+                cube([19, 39.5, 60]);
+                translate([17,40,40]) rotate([90,90,0]) difference() {
+                    color("cyan") union() {
+                        //translate([0,-4,38.5]) cube([17.5+13,6,53.5]);
+                        translate([17.5,-19,-5]) cube([13,21,52]);
+                    }
+                    translate([17.5+(13/2),10,0]) rotate([90,0,0]) color("blue") cylinder(30, 2, 2, $fn=20);
+                    translate([17.5+(13/2),10,40]) rotate([90,0,0]) color("blue") cylinder(30, 2, 2, $fn=20);
+                }
+            }
             translate([0, 2, 0]) {
                 translate([-1,0,-1]) color("pink") cube([14, 38.5, 62]);
                 translate([-1,-3,-1]) color("red") cube([4, 38.5, 62]);
@@ -39,18 +49,16 @@
 
     translate([20,56,0]) import("favela printer z acme nut.stl");
 
-    difference() {
-        union() {
-            translate([0,-4,38.5]) cube([17.5+13,6,53.5]);
-            translate([17.5,-8,40]) cube([13,8,52]);
+    /*difference() {
+        color("cyan") union() {
+            //translate([0,-4,38.5]) cube([17.5+13,6,53.5]);
+            translate([17.5,-19,-5]) cube([13,21,52]);
         }
-        translate([17.5+(13/2),5,45]) rotate([90,0,0]) color("blue") cylinder(30, 2, 2, $fn=20);
-        translate([17.5+(13/2),5,85]) rotate([90,0,0]) color("blue") cylinder(30, 2, 2, $fn=20);
-    }
+        translate([17.5+(13/2),10,0]) rotate([90,0,0]) color("blue") cylinder(30, 2, 2, $fn=20);
+        translate([17.5+(13/2),10,40]) rotate([90,0,0]) color("blue") cylinder(30, 2, 2, $fn=20);
+    }*/
 
     // motor side
-    translate([-11,-4,0]) cube([15,6,92]);
-    translate([-11, -25.5, 65.5]) rotate([0,90,0]) color("green") import("Nema17Support.stl");
     /*translate([-11,-4,0]) cube([15,6,92]);
     difference() {
         color("green") union() {
@@ -58,5 +66,5 @@
         }
         color("red") translate([-12,-10,91.9]) cube([25,15,18]);
         color("red") translate([-12,-19,16]) cube([25,15,18]);
-    }*/
-//}
+    }*/ 
+}
