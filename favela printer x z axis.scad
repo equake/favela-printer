@@ -1,3 +1,10 @@
+module prism(l, w, h){
+   polyhedron(
+           points=[[0,0,0], [l,0,0], [l,w,0], [0,w,0], [0,w,h], [l,w,h]],
+           faces=[[0,1,2,3],[5,4,3,2],[0,4,5,1],[0,3,4],[5,2,1]]
+           );
+}
+
 //mirror([1,0,0]) {
     difference() {
         cube([19, 39.5, 61.5]);
@@ -43,14 +50,15 @@
         union() {
             translate([0,-4,38.5]) cube([17.5+13,6,53.5]);
             translate([17.5,-8,40]) cube([13,8,52]);
+            translate([17.5,-8,40]) prism(13,4,-3.5);
         }
-        translate([17.5+(13/2),5,45]) rotate([90,0,0]) color("blue") cylinder(30, 2, 2, $fn=20);
-        translate([17.5+(13/2),5,85]) rotate([90,0,0]) color("blue") cylinder(30, 2, 2, $fn=20);
+        translate([17.5+(13/2),5,44]) rotate([90,0,0]) color("blue") cylinder(30, 2, 2, $fn=20);
+        translate([17.5+(13/2),5,86]) rotate([90,0,0]) color("blue") cylinder(30, 2, 2, $fn=20);
     }
 
     // motor side
     translate([-11,-4,0]) cube([15,6,92]);
-    translate([-11, -25.5, 65.5]) rotate([0,90,0]) color("green") import("Nema17Support.stl");
+    translate([-11, -25.5, 59.2]) rotate([0,90,0]) color("green") import("Nema17Support.stl");
     /*translate([-11,-4,0]) cube([15,6,92]);
     difference() {
         color("green") union() {
