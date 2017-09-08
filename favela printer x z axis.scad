@@ -1,9 +1,4 @@
-module prism(l, w, h){
-   polyhedron(
-           points=[[0,0,0], [l,0,0], [l,w,0], [0,w,0], [0,w,h], [l,w,h]],
-           faces=[[0,1,2,3],[5,4,3,2],[0,4,5,1],[0,3,4],[5,2,1]]
-           );
-}
+include <helpers.scad>;
 
 //mirror([1,0,0]) {
     difference() {
@@ -35,14 +30,7 @@ module prism(l, w, h){
     translate([31,-2,0]) color("green") cube([8,47,10]);
     translate([6,38,0]) color("green") cube([30,7,10]);
 
-    translate([-2,37.5,0]) difference() {
-        union() {
-            color("gray") cube([3.5,28,10]);
-            translate([0,15,0]) color("gray") cube([9,4,10]);
-        }
-        translate([-5,23.5,5]) rotate([0,90,0]) color("blue") cylinder(30, 2, 2, $fn=20);
-        translate([-5,5.5,5]) rotate([0,90,0]) color("blue") cylinder(30, 2, 2, $fn=20);
-    }
+    translate([-2,37.5,0]) endstop_support(true);
 
     translate([20,56,0]) import("favela printer z acme nut.stl");
 
