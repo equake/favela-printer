@@ -32,7 +32,8 @@ include <helpers.scad>;
 
     translate([-2,37.5,0]) endstop_support(true);
 
-    translate([20,56,0]) import("favela printer z acme nut.stl");
+    //translate([20,56,0]) import("favela printer z acme nut.stl");
+    color("blue") translate([24,66,0]) import("favela printer z standard nut.stl");
 
     difference() {
         union() {
